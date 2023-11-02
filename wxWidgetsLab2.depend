@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1698769793 source:/home/stud/labs/wxWidgetsLab2/wxWidgetsLab2App.cpp
+	"wxWidgetsLab2App.h"
+	"wxWidgetsLab2Main.h"
+	<wx/image.h>
+
+1698769793 /home/stud/labs/wxWidgetsLab2/wxWidgetsLab2App.h
+	<wx/app.h>
+
+1698771253 /home/stud/labs/wxWidgetsLab2/wxWidgetsLab2Main.h
+	<wx/frame.h>
+	<wx/menu.h>
+	<wx/statusbr.h>
+
+1698771253 source:/home/stud/labs/wxWidgetsLab2/wxWidgetsLab2Main.cpp
+	"wxWidgetsLab2Main.h"
+	<wx/msgdlg.h>
+	<wx/intl.h>
+	<wx/string.h>
+
+1698770278 source:/home/stud/labs/wxWidgetsLab2/wxGraphData.cpp
+	"wxGraphData.h"
+
+1698770278 /home/stud/labs/wxWidgetsLab2/wxGraphData.h
+

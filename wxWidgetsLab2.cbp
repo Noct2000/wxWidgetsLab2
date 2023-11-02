@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="wxWidgetsLab2" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/wxWidgetsLab2" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="`wx-config  --version=3.1 --static=no --unicode=yes --debug=yes --cflags`" />
+				</Compiler>
+				<Linker>
+					<Add option="`wx-config  --version=3.1 --static=no --unicode=yes --debug=yes --libs`" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/wxWidgetsLab2" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="`wx-config  --version=3.1 --static=no --unicode=yes --debug=no --cflags`" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="`wx-config  --version=3.1 --static=no --unicode=yes --debug=no --libs`" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="wxWidgetsLab2App.cpp" />
+		<Unit filename="wxWidgetsLab2App.h" />
+		<Unit filename="wxWidgetsLab2Main.cpp" />
+		<Unit filename="wxWidgetsLab2Main.h" />
+		<Unit filename="wxsmith/wxWidgetsLab2frame.wxs" />
+		<Extensions>
+			<wxsmith version="1">
+				<gui name="wxWidgets" src="wxWidgetsLab2App.cpp" main="wxWidgetsLab2Frame" init_handlers="necessary" language="CPP" />
+				<resources>
+					<wxFrame wxs="wxsmith/wxWidgetsLab2frame.wxs" src="wxWidgetsLab2Main.cpp" hdr="wxWidgetsLab2Main.h" fwddecl="0" i18n="1" name="wxWidgetsLab2Frame" language="CPP" />
+				</resources>
+			</wxsmith>
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

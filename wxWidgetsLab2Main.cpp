@@ -56,6 +56,8 @@ const long wxWidgetsLab2Frame::ID_STATUSBAR1 = wxNewId();
 
 BEGIN_EVENT_TABLE(wxWidgetsLab2Frame,wxFrame)
     EVT_MENU(ID_MENU_ABOUT, wxWidgetsLab2Frame::OnAbout)
+    EVT_MENU(ID_MENU_EXIT, wxWidgetsLab2Frame::OnQuit)
+    EVT_CLOSE(wxWidgetsLab2Frame::OnClose)
 END_EVENT_TABLE()
 
 wxWidgetsLab2Frame::wxWidgetsLab2Frame(wxWindow* parent,wxWindowID id)
@@ -118,4 +120,10 @@ void wxWidgetsLab2Frame::OnAbout(wxCommandEvent& event)
 {
     wxString msg = wxbuildinfo(long_f) + "\nAuthor: Oleh Kvasha";
     wxMessageBox(msg, _("Welcome to wxWidgets Lab2 App"));
+}
+
+void wxWidgetsLab2Frame::OnClose(wxCloseEvent& event)
+{
+    wxMessageBox("Close");
+    Destroy();
 }

@@ -7,12 +7,12 @@
 1698769793 /home/stud/labs/wxWidgetsLab2/wxWidgetsLab2App.h
 	<wx/app.h>
 
-1698920278 /home/stud/labs/wxWidgetsLab2/wxWidgetsLab2Main.h
+1698922707 /home/stud/labs/wxWidgetsLab2/wxWidgetsLab2Main.h
 	<wx/frame.h>
 	<wx/menu.h>
 	<wx/statusbr.h>
 
-1698922137 source:/home/stud/labs/wxWidgetsLab2/wxWidgetsLab2Main.cpp
+1698922945 source:/home/stud/labs/wxWidgetsLab2/wxWidgetsLab2Main.cpp
 	"wxWidgetsLab2Main.h"
 	<wx/msgdlg.h>
 	<wx/intl.h>

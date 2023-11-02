@@ -28,6 +28,7 @@ class wxWidgetsLab2Frame: public wxFrame
         //(*Handlers(wxWidgetsLab2Frame)
         void OnQuit(wxCommandEvent& event);
         void OnAbout(wxCommandEvent& event);
+        void OnClose(wxCloseEvent& event);
         //*)
 
         //(*Identifiers(wxWidgetsLab2Frame)

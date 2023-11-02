@@ -43,6 +43,7 @@ class wxWidgetsLab2Frame: public wxFrame
         void OnAbout(wxCommandEvent& event);
         void OnGraphData(wxCommandEvent& event);
         void OnGridData(wxCommandEvent& event);
+        void OnGenerateData(wxCommandEvent& event);
         void OnLoadData(wxCommandEvent& event);
         void OnSaveData(wxCommandEvent& event);
         void OnClose(wxCloseEvent& event);

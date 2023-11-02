@@ -7,16 +7,18 @@
 1698769793 /home/stud/labs/wxWidgetsLab2/wxWidgetsLab2App.h
 	<wx/app.h>
 
-1698946200 /home/stud/labs/wxWidgetsLab2/wxWidgetsLab2Main.h
+1698947111 /home/stud/labs/wxWidgetsLab2/wxWidgetsLab2Main.h
 	"wxPaintView.h"
 	"wxGridView.h"
 	<wx/frame.h>
 	<wx/menu.h>
 	<wx/statusbr.h>
 
-1698923340 source:/home/stud/labs/wxWidgetsLab2/wxWidgetsLab2Main.cpp
+1698947782 source:/home/stud/labs/wxWidgetsLab2/wxWidgetsLab2Main.cpp
 	"wxWidgetsLab2Main.h"
 	<wx/msgdlg.h>
+	<wx/file.h>
+	<wxGraphData.h>
 	<wx/intl.h>
 	<wx/string.h>
 

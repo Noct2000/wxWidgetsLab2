@@ -63,6 +63,7 @@ BEGIN_EVENT_TABLE(wxWidgetsLab2Frame,wxFrame)
     EVT_MENU(ID_MENU_EXIT, wxWidgetsLab2Frame::OnQuit)
     EVT_MENU(ID_MENU_GRAPHIC_DATA, wxWidgetsLab2Frame::OnGraphData)
     EVT_MENU(ID_MENU_TABLE_DATA, wxWidgetsLab2Frame::OnGridData)
+    EVT_MENU(ID_MENU_GENERATE_DATA, wxWidgetsLab2Frame::OnGenerateData)
     EVT_CLOSE(wxWidgetsLab2Frame::OnClose)
 END_EVENT_TABLE()
 
@@ -113,9 +114,6 @@ wxWidgetsLab2Frame::wxWidgetsLab2Frame(wxWindow* parent,wxWindowID id)
     m_paintView = nullptr;
     m_gridView = nullptr;
     m_data = new wxGraphData();
-
-    if (!wxFile::Exists(GRAPH_DATA_FILENAME)) m_data->Generate();
-    else m_data->LoadFromFile(GRAPH_DATA_FILENAME);
 }
 
 wxWidgetsLab2Frame::~wxWidgetsLab2Frame()
@@ -229,5 +227,11 @@ void wxWidgetsLab2Frame::OnGridData(wxCommandEvent& event)
     } else {
         CreateView(ID_GRID_VIEW);
     }
+}
+
+void wxWidgetsLab2Frame::OnGenerateData(wxCommandEvent& event)
+{
+    if (!wxFile::Exists(GRAPH_DATA_FILENAME)) m_data->Generate();
+    wxMessageBox("Data ganerated", "Success", wxOK, this);
 }
 

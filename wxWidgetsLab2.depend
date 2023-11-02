@@ -12,7 +12,7 @@
 	<wx/menu.h>
 	<wx/statusbr.h>
 
-1698922945 source:/home/stud/labs/wxWidgetsLab2/wxWidgetsLab2Main.cpp
+1698923340 source:/home/stud/labs/wxWidgetsLab2/wxWidgetsLab2Main.cpp
 	"wxWidgetsLab2Main.h"
 	<wx/msgdlg.h>
 	<wx/intl.h>

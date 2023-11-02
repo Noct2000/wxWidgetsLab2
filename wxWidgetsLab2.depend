@@ -36,3 +36,10 @@
 	<wx/window.h>
 	"wxGraphData.h"
 
+1698938277 source:/home/stud/labs/wxWidgetsLab2/wxGridView.cpp
+	"wxGridView.h"
+
+1698938317 /home/stud/labs/wxWidgetsLab2/wxGridView.h
+	<wx/grid.h>
+	"wxGraphData.h"
+

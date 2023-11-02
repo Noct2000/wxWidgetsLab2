@@ -31,15 +31,15 @@ class wxWidgetsLab2Frame: public wxFrame
         //*)
 
         //(*Identifiers(wxWidgetsLab2Frame)
-        static const long ID_MENUITEM1;
-        static const long ID_MENUITEM2;
-        static const long ID_MENUITEM3;
-        static const long ID_MENUITEM4;
-        static const long ID_MENUITEM5;
-        static const long ID_MENUITEM6;
-        static const long ID_MENUITEM7;
-        static const long ID_MENUITEM8;
-        static const long ID_MENUITEM9;
+        static const long ID_MENU_OPEN;
+        static const long ID_MENU_SAVE;
+        static const long ID_MENU_CLOSE;
+        static const long ID_MENU_EXPORT;
+        static const long ID_MENU_EXIT;
+        static const long ID_MENU_TABLE_DATA;
+        static const long ID_MENU_GRAPHIC_DATA;
+        static const long ID_MENU_GENERATE_DATA;
+        static const long ID_MENU_ABOUT;
         static const long ID_STATUSBAR1;
         //*)
 

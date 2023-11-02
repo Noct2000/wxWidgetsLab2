@@ -64,6 +64,7 @@ BEGIN_EVENT_TABLE(wxWidgetsLab2Frame,wxFrame)
     EVT_MENU(ID_MENU_GRAPHIC_DATA, wxWidgetsLab2Frame::OnGraphData)
     EVT_MENU(ID_MENU_TABLE_DATA, wxWidgetsLab2Frame::OnGridData)
     EVT_MENU(ID_MENU_GENERATE_DATA, wxWidgetsLab2Frame::OnGenerateData)
+    EVT_MENU(ID_MENU_CLOSE, wxWidgetsLab2Frame::OnCloseData)
     EVT_CLOSE(wxWidgetsLab2Frame::OnClose)
 END_EVENT_TABLE()
 
@@ -232,6 +233,21 @@ void wxWidgetsLab2Frame::OnGridData(wxCommandEvent& event)
 void wxWidgetsLab2Frame::OnGenerateData(wxCommandEvent& event)
 {
     if (!wxFile::Exists(GRAPH_DATA_FILENAME)) m_data->Generate();
-    wxMessageBox("Data ganerated", "Success", wxOK, this);
+    wxMessageBox("Data generated", "Success", wxOK, this);
+}
+
+void wxWidgetsLab2Frame::OnCloseData(wxCommandEvent& event)
+{
+    int answer = wxMessageBox("All unsaved data will be lost", "Should we close file?", wxYES_NO, this);
+    if (answer != wxYES) return;
+
+    if (m_paintView != nullptr) {
+        DestroyView(ID_GRAPHICS_VIEW);
+    }
+    if (m_gridView != nullptr) {
+        DestroyView(ID_GRID_VIEW);
+    }
+    m_data->Clear();
+    wxMessageBox("You closed file ", "Success", wxOK, this);
 }
 

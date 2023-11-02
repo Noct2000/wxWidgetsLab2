@@ -9,6 +9,7 @@
 
 #include "wxWidgetsLab2Main.h"
 #include <wx/msgdlg.h>
+#include <wx/wx.h>
 #include <wx/file.h>
 #include <wxGraphData.h>
 
@@ -65,6 +66,7 @@ BEGIN_EVENT_TABLE(wxWidgetsLab2Frame,wxFrame)
     EVT_MENU(ID_MENU_TABLE_DATA, wxWidgetsLab2Frame::OnGridData)
     EVT_MENU(ID_MENU_GENERATE_DATA, wxWidgetsLab2Frame::OnGenerateData)
     EVT_MENU(ID_MENU_CLOSE, wxWidgetsLab2Frame::OnCloseData)
+    EVT_MENU(ID_MENU_OPEN, wxWidgetsLab2Frame::OnOpenFile)
     EVT_CLOSE(wxWidgetsLab2Frame::OnClose)
 END_EVENT_TABLE()
 
@@ -164,7 +166,6 @@ void wxWidgetsLab2Frame::CreateView(int id_view)
     else {
         wxMessageBox("No Data", "ERROR",
                      wxOK | wxICON_ERROR, this);
-        Close();
     }
 }
 
@@ -238,8 +239,10 @@ void wxWidgetsLab2Frame::OnGenerateData(wxCommandEvent& event)
 
 void wxWidgetsLab2Frame::OnCloseData(wxCommandEvent& event)
 {
-    int answer = wxMessageBox("All unsaved data will be lost", "Should we close file?", wxYES_NO, this);
-    if (answer != wxYES) return;
+    if (wxMessageBox("All unsaved data will be lost. Proceed?", "Please confirm",
+                         wxICON_QUESTION | wxYES_NO, this) == wxNO ) {
+        return;
+    }
 
     if (m_paintView != nullptr) {
         DestroyView(ID_GRAPHICS_VIEW);
@@ -249,5 +252,20 @@ void wxWidgetsLab2Frame::OnCloseData(wxCommandEvent& event)
     }
     m_data->Clear();
     wxMessageBox("You closed file ", "Success", wxOK, this);
+}
+
+void wxWidgetsLab2Frame::OnOpenFile(wxCommandEvent& event)
+{
+    if (wxMessageBox("All unsaved data will be lost. Proceed?", "Please confirm",
+                         wxICON_QUESTION | wxYES_NO, this) == wxNO ) {
+        return;
+    }
+    wxFileDialog openFileDialog(this, "Open .dat file", "", "",
+                       "DAT files (*.dat)|*.dat", wxFD_OPEN|wxFD_FILE_MUST_EXIST);
+    if (openFileDialog.ShowModal() == wxID_CANCEL)
+        return;
+
+    m_data->LoadFromFile(openFileDialog.GetPath());
+
 }
 

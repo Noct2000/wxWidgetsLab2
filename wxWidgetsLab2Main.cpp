@@ -13,6 +13,8 @@
 #include <wx/file.h>
 #include <wxGraphData.h>
 
+#define DEFAULT_BACKUP_FILE_NAME "temp.dat.backup"
+
 //(*InternalHeaders(wxWidgetsLab2Frame)
 #include <wx/intl.h>
 #include <wx/string.h>
@@ -142,7 +144,12 @@ void wxWidgetsLab2Frame::OnAbout(wxCommandEvent& event)
 
 void wxWidgetsLab2Frame::OnClose(wxCloseEvent& event)
 {
-    wxMessageBox("Close");
+    if (!m_data->IsEmpty())
+    {
+        m_data->SaveToFile(DEFAULT_BACKUP_FILE_NAME);
+        wxMessageBox(_("Data was saved to '") + DEFAULT_BACKUP_FILE_NAME + _("'"), "Info");
+    }
+
     Destroy();
 }
 

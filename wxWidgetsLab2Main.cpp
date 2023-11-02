@@ -67,6 +67,7 @@ BEGIN_EVENT_TABLE(wxWidgetsLab2Frame,wxFrame)
     EVT_MENU(ID_MENU_GENERATE_DATA, wxWidgetsLab2Frame::OnGenerateData)
     EVT_MENU(ID_MENU_CLOSE, wxWidgetsLab2Frame::OnCloseData)
     EVT_MENU(ID_MENU_OPEN, wxWidgetsLab2Frame::OnOpenFile)
+    EVT_MENU(ID_MENU_SAVE, wxWidgetsLab2Frame::OnSaveFile)
     EVT_CLOSE(wxWidgetsLab2Frame::OnClose)
 END_EVENT_TABLE()
 
@@ -268,4 +269,20 @@ void wxWidgetsLab2Frame::OnOpenFile(wxCommandEvent& event)
     m_data->LoadFromFile(openFileDialog.GetPath());
 
 }
+
+void wxWidgetsLab2Frame::OnSaveFile(wxCommandEvent& event)
+{
+    if (m_data->IsEmpty()) {
+        wxMessageBox("No Data", "ERROR",
+                     wxOK | wxICON_ERROR, this);
+        return;
+    }
+    wxFileDialog saveFileDialog(this, _("Save .dat file"), "", "",
+                       "DAT files (*.dat)|*.dat", wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
+    if (saveFileDialog.ShowModal() == wxID_CANCEL)
+        return;
+    m_data->SaveToFile(saveFileDialog.GetPath().EndsWith(".dat") || saveFileDialog.GetPath().EndsWith(".DAT") ? saveFileDialog.GetPath() : saveFileDialog.GetPath() + ".dat");
+
+}
+
 

@@ -48,6 +48,7 @@ class wxWidgetsLab2Frame: public wxFrame
         void OnSaveData(wxCommandEvent& event);
         void OnCloseData(wxCommandEvent& event);
         void OnOpenFile(wxCommandEvent& event);
+        void OnSaveFile(wxCommandEvent& event);
         void OnClose(wxCloseEvent& event);
         //*)
 

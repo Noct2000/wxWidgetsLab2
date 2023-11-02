@@ -36,7 +36,6 @@ class wxWidgetsLab2Frame: public wxFrame
         wxGraphData *m_data;
         void CreateView(int id_view);
         void DestroyView(int id_view);
-        void SwitchToSelectView();
 
         //(*Handlers(wxWidgetsLab2Frame)
         void OnQuit(wxCommandEvent& event);
@@ -44,8 +43,6 @@ class wxWidgetsLab2Frame: public wxFrame
         void OnGraphData(wxCommandEvent& event);
         void OnGridData(wxCommandEvent& event);
         void OnGenerateData(wxCommandEvent& event);
-        void OnLoadData(wxCommandEvent& event);
-        void OnSaveData(wxCommandEvent& event);
         void OnCloseData(wxCommandEvent& event);
         void OnOpenFile(wxCommandEvent& event);
         void OnSaveFile(wxCommandEvent& event);

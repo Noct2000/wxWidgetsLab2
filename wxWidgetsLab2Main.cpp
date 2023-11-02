@@ -18,8 +18,6 @@
 #include <wx/string.h>
 //*)
 
-#define GRAPH_DATA_FILENAME "graph.dat"
-
 //helper functions
 enum wxbuildinfoformat {
     short_f, long_f };
@@ -188,26 +186,6 @@ void wxWidgetsLab2Frame::DestroyView(int id_view)
     }
 }
 
-void wxWidgetsLab2Frame::SwitchToSelectView()
-{
-    if (m_paintView != nullptr) {
-        DestroyView(ID_GRAPHICS_VIEW);
-        CreateView(ID_GRID_VIEW);
-    } else {
-        DestroyView(ID_GRID_VIEW);
-        CreateView(ID_GRAPHICS_VIEW);
-    }
-}
-
-void wxWidgetsLab2Frame::OnLoadData(wxCommandEvent& event)
-{
-    if (m_data->LoadFromFile(GRAPH_DATA_FILENAME)) SwitchToSelectView();
-}
-
-void wxWidgetsLab2Frame::OnSaveData(wxCommandEvent& event)
-{
-    m_data->SaveToFile(GRAPH_DATA_FILENAME);
-}
 
 void wxWidgetsLab2Frame::OnGraphData(wxCommandEvent& event)
 {
@@ -235,7 +213,7 @@ void wxWidgetsLab2Frame::OnGridData(wxCommandEvent& event)
 
 void wxWidgetsLab2Frame::OnGenerateData(wxCommandEvent& event)
 {
-    if (!wxFile::Exists(GRAPH_DATA_FILENAME)) m_data->Generate();
+    m_data->Generate();
     wxMessageBox("Data generated", "Success", wxOK, this);
 }
 

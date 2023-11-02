@@ -288,26 +288,31 @@ void wxWidgetsLab2Frame::OnSaveFile(wxCommandEvent& event)
 
 void wxWidgetsLab2Frame::OnExport(wxCommandEvent& event)
 {
-        wxClientDC dc(this);
-        wxSize size = GetClientSize();
-        wxMemoryDC memDC;
-        wxBitmap bitmap(size.GetWidth(), size.GetHeight());
-        memDC.SelectObject(bitmap);
-        memDC.Blit(0, 0, size.GetWidth(), size.GetHeight(), &dc, 0, 0);
-        memDC.SelectObject(wxNullBitmap);
-        wxImage image = bitmap.ConvertToImage();
+    if (m_paintView == nullptr) {
+        wxMessageBox("Choose in main menu 'View/Graphic Data' before data export", "ERROR",
+                     wxOK | wxICON_ERROR, this);
+        return;
+    }
+    wxClientDC dc(this);
+    wxSize size = GetClientSize();
+    wxMemoryDC memDC;
+    wxBitmap bitmap(size.GetWidth(), size.GetHeight());
+    memDC.SelectObject(bitmap);
+    memDC.Blit(0, 0, size.GetWidth(), size.GetHeight(), &dc, 0, 0);
+    memDC.SelectObject(wxNullBitmap);
+    wxImage image = bitmap.ConvertToImage();
 
-        wxFileDialog saveFileDialog(this, _("Save .bmp file"), "", "",
-                       "BMP files (*.bmp)|*.bmp", wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
-        if (saveFileDialog.ShowModal() == wxID_CANCEL)
-            return;
+    wxFileDialog saveFileDialog(this, _("Save .bmp file"), "", "",
+                    "BMP files (*.bmp)|*.bmp", wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
+    if (saveFileDialog.ShowModal() == wxID_CANCEL)
+        return;
 
-        if (image.SaveFile(saveFileDialog.GetPath(), wxBITMAP_TYPE_BMP))
-        {
+    if (image.SaveFile(saveFileDialog.GetPath(), wxBITMAP_TYPE_BMP))
+    {
             wxMessageBox("Image exported as BMP successfully.", "Exported", wxOK | wxICON_INFORMATION);
-        }
-        else
-        {
-            wxMessageBox("Failed to export the image.", "Export Error", wxOK | wxICON_ERROR);
-        }
+    }
+    else
+    {
+        wxMessageBox("Failed to export the image.", "Export Error", wxOK | wxICON_ERROR);
+    }
 }

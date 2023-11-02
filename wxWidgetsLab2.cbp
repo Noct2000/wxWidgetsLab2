@@ -48,6 +48,10 @@
 		</Linker>
 		<Unit filename="wxGraphData.cpp" />
 		<Unit filename="wxGraphData.h" />
+		<Unit filename="wxGridView.cpp" />
+		<Unit filename="wxGridView.h" />
+		<Unit filename="wxPaintView.cpp" />
+		<Unit filename="wxPaintView.h" />
 		<Unit filename="wxWidgetsLab2App.cpp" />
 		<Unit filename="wxWidgetsLab2App.h" />
 		<Unit filename="wxWidgetsLab2Main.cpp" />

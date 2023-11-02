@@ -10,11 +10,17 @@
 #ifndef WXWIDGETSLAB2MAIN_H
 #define WXWIDGETSLAB2MAIN_H
 
+#include "wxPaintView.h"
+#include "wxGridView.h"
+
 //(*Headers(wxWidgetsLab2Frame)
 #include <wx/frame.h>
 #include <wx/menu.h>
 #include <wx/statusbr.h>
 //*)
+
+#define ID_GRAPHICS_VIEW 1
+#define ID_GRID_VIEW     2
 
 class wxWidgetsLab2Frame: public wxFrame
 {
@@ -25,9 +31,20 @@ class wxWidgetsLab2Frame: public wxFrame
 
     private:
 
+        wxPaintView *m_paintView;
+        wxGridView *m_gridView;
+        wxGraphData *m_data;
+        void CreateView(int id_view);
+        void DestroyView(int id_view);
+        void SwitchToSelectView();
+
         //(*Handlers(wxWidgetsLab2Frame)
         void OnQuit(wxCommandEvent& event);
         void OnAbout(wxCommandEvent& event);
+        void OnGraphData(wxCommandEvent& event);
+        void OnGridData(wxCommandEvent& event);
+        void OnLoadData(wxCommandEvent& event);
+        void OnSaveData(wxCommandEvent& event);
         void OnClose(wxCloseEvent& event);
         //*)
 

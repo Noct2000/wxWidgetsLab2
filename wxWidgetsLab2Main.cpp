@@ -9,11 +9,15 @@
 
 #include "wxWidgetsLab2Main.h"
 #include <wx/msgdlg.h>
+#include <wx/file.h>
+#include <wxGraphData.h>
 
 //(*InternalHeaders(wxWidgetsLab2Frame)
 #include <wx/intl.h>
 #include <wx/string.h>
 //*)
+
+#define GRAPH_DATA_FILENAME "graph.dat"
 
 //helper functions
 enum wxbuildinfoformat {
@@ -57,6 +61,8 @@ const long wxWidgetsLab2Frame::ID_STATUSBAR1 = wxNewId();
 BEGIN_EVENT_TABLE(wxWidgetsLab2Frame,wxFrame)
     EVT_MENU(ID_MENU_ABOUT, wxWidgetsLab2Frame::OnAbout)
     EVT_MENU(ID_MENU_EXIT, wxWidgetsLab2Frame::OnQuit)
+    EVT_MENU(ID_MENU_GRAPHIC_DATA, wxWidgetsLab2Frame::OnGraphData)
+    EVT_MENU(ID_MENU_TABLE_DATA, wxWidgetsLab2Frame::OnGridData)
     EVT_CLOSE(wxWidgetsLab2Frame::OnClose)
 END_EVENT_TABLE()
 
@@ -65,7 +71,7 @@ wxWidgetsLab2Frame::wxWidgetsLab2Frame(wxWindow* parent,wxWindowID id)
     //(*Initialize(wxWidgetsLab2Frame)
     wxMenuBar* MenuBar1;
 
-    Create(parent, id, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("id"));
+    Create(parent, id, _("wxWidgetsLab2"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("id"));
     MenuBar1 = new wxMenuBar();
     Menu1 = new wxMenu();
     MenuItem1 = new wxMenuItem(Menu1, ID_MENU_OPEN, _("Open..."), wxEmptyString, wxITEM_NORMAL);
@@ -103,10 +109,21 @@ wxWidgetsLab2Frame::wxWidgetsLab2Frame(wxWindow* parent,wxWindowID id)
     StatusBar1->SetStatusStyles(1,__wxStatusBarStyles_1);
     SetStatusBar(StatusBar1);
     //*)
+
+    m_paintView = nullptr;
+    m_gridView = nullptr;
+    m_data = new wxGraphData();
+
+    if (!wxFile::Exists(GRAPH_DATA_FILENAME)) m_data->Generate();
+    else m_data->LoadFromFile(GRAPH_DATA_FILENAME);
 }
 
 wxWidgetsLab2Frame::~wxWidgetsLab2Frame()
 {
+    DestroyView(ID_GRAPHICS_VIEW);
+    DestroyView(ID_GRID_VIEW);
+    delete m_data;
+
     //(*Destroy(wxWidgetsLab2Frame)
     //*)
 }
@@ -127,3 +144,90 @@ void wxWidgetsLab2Frame::OnClose(wxCloseEvent& event)
     wxMessageBox("Close");
     Destroy();
 }
+
+void wxWidgetsLab2Frame::CreateView(int id_view)
+{
+    if (!m_data->IsEmpty())
+    {
+        switch(id_view) {
+        case ID_GRAPHICS_VIEW:
+            m_paintView = new wxPaintView(this, (const wxGraphData *)m_data, m_data->GetXBorder(), 20);
+            m_paintView->SetDrawFlag(true);
+            break;
+
+        case ID_GRID_VIEW:
+            m_gridView = new wxGridView(this, (const wxGraphData *)m_data);
+            break;
+    }
+
+    this->PostSizeEvent();
+    }
+    else {
+        wxMessageBox("No Data", "ERROR",
+                     wxOK | wxICON_ERROR, this);
+        Close();
+    }
+}
+
+void wxWidgetsLab2Frame::DestroyView(int id_view)
+{
+    switch(id_view) {
+        case ID_GRAPHICS_VIEW:
+            if (m_paintView != nullptr) {
+                m_paintView->SetDrawFlag(false);
+                if (m_paintView->Destroy()) m_paintView = nullptr;
+            }
+            break;
+        case ID_GRID_VIEW:
+            if (m_gridView != nullptr) {
+                if (m_gridView->Destroy()) m_gridView = nullptr;
+            }
+            break;
+    }
+}
+
+void wxWidgetsLab2Frame::SwitchToSelectView()
+{
+    if (m_paintView != nullptr) {
+        DestroyView(ID_GRAPHICS_VIEW);
+        CreateView(ID_GRID_VIEW);
+    } else {
+        DestroyView(ID_GRID_VIEW);
+        CreateView(ID_GRAPHICS_VIEW);
+    }
+}
+
+void wxWidgetsLab2Frame::OnLoadData(wxCommandEvent& event)
+{
+    if (m_data->LoadFromFile(GRAPH_DATA_FILENAME)) SwitchToSelectView();
+}
+
+void wxWidgetsLab2Frame::OnSaveData(wxCommandEvent& event)
+{
+    m_data->SaveToFile(GRAPH_DATA_FILENAME);
+}
+
+void wxWidgetsLab2Frame::OnGraphData(wxCommandEvent& event)
+{
+    if (m_gridView != nullptr) {
+        DestroyView(ID_GRID_VIEW);
+        CreateView(ID_GRAPHICS_VIEW);
+    } else if (m_paintView != nullptr) {
+        DestroyView(ID_GRAPHICS_VIEW);
+    } else {
+        CreateView(ID_GRAPHICS_VIEW);
+    }
+}
+
+void wxWidgetsLab2Frame::OnGridData(wxCommandEvent& event)
+{
+    if (m_paintView != nullptr) {
+        DestroyView(ID_GRAPHICS_VIEW);
+        CreateView(ID_GRID_VIEW);
+    } else if (m_gridView != nullptr) {
+        DestroyView(ID_GRID_VIEW);
+    } else {
+        CreateView(ID_GRID_VIEW);
+    }
+}
+

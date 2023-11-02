@@ -18,8 +18,21 @@
 	<wx/intl.h>
 	<wx/string.h>
 
-1698770278 source:/home/stud/labs/wxWidgetsLab2/wxGraphData.cpp
+1698932271 source:/home/stud/labs/wxWidgetsLab2/wxGraphData.cpp
 	"wxGraphData.h"
+	<wx/file.h>
+	<wx/arrimpl.cpp>
 
-1698770278 /home/stud/labs/wxWidgetsLab2/wxGraphData.h
+1698932041 /home/stud/labs/wxWidgetsLab2/wxGraphData.h
+	<wx/dynarray.h>
+	<wx/gdicmn.h>
+
+1698937053 source:/home/stud/labs/wxWidgetsLab2/wxPaintView.cpp
+	"wxPaintView.h"
+	<wx/dcclient.h>
+
+1698937012 /home/stud/labs/wxWidgetsLab2/wxPaintView.h
+	<wx/panel.h>
+	<wx/window.h>
+	"wxGraphData.h"
 

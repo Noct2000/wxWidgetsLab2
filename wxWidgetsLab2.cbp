@@ -15,6 +15,7 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add option="`wx-config  --version=3.1 --static=no --unicode=yes --debug=yes --cflags`" />
+					<Add directory="../wxWidgetsLab2" />
 				</Compiler>
 				<Linker>
 					<Add option="`wx-config  --version=3.1 --static=no --unicode=yes --debug=yes --libs`" />
@@ -29,6 +30,7 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add option="`wx-config  --version=3.1 --static=no --unicode=yes --debug=no --cflags`" />
+					<Add directory="../wxWidgetsLab2" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -38,7 +40,14 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-I/usr/local/lib/wx/include/gtk3-unicode-3.2 -I/usr/local/include/wx-3.2 -D_FILE_OFFSET_BITS=64 -DWXUSINGDLL -D__WXGTK__ -pthread" />
 		</Compiler>
+		<Linker>
+			<Add library="wx_baseu-3.2" />
+			<Add library="wx_gtk3u_core-3.2" />
+		</Linker>
+		<Unit filename="wxGraphData.cpp" />
+		<Unit filename="wxGraphData.h" />
 		<Unit filename="wxWidgetsLab2App.cpp" />
 		<Unit filename="wxWidgetsLab2App.h" />
 		<Unit filename="wxWidgetsLab2Main.cpp" />

@@ -1,30 +1,53 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <wxsmith>
-    <object class="wxFrame" name="wxWidgetsLab2Frame">
-        <object class="wxMenuBar" variable="MenuBar1" member="no">
-            <object class="wxMenu" variable="Menu1" member="no">
-                <label>&amp;File</label>
-                <object class="wxMenuItem" name="idMenuQuit" variable="MenuItem1" member="no">
-                    <label>Quit</label>
-                    <accel>Alt-F4</accel>
-                    <help>Quit the application</help>
-                    <handler function="OnQuit" entry="EVT_MENU" />
-                </object>
-            </object>
-            <object class="wxMenu" variable="Menu2" member="no">
-                <label>Help</label>
-                <object class="wxMenuItem" name="idMenuAbout" variable="MenuItem2" member="no">
-                    <label>About</label>
-                    <accel>F1</accel>
-                    <help>Show info about this application</help>
-                    <handler function="OnAbout" entry="EVT_MENU" />
-                </object>
-            </object>
-        </object>
-        <object class="wxStatusBar" name="ID_STATUSBAR1" variable="StatusBar1" member="yes">
-            <fields>1</fields>
-            <widths>-1</widths>
-            <styles>wxSB_NORMAL</styles>
-        </object>
-    </object>
+	<object class="wxFrame" name="wxWidgetsLab2Frame">
+		<object class="wxMenuBar" variable="MenuBar1" member="no">
+			<object class="wxMenu" variable="Menu1" member="yes">
+				<label>File</label>
+				<object class="wxMenuItem" name="ID_MENU_OPEN" variable="MenuItem1" member="yes">
+					<label>Open...</label>
+				</object>
+				<object class="wxMenuItem" name="ID_MENU_SAVE" variable="MenuItem2" member="yes">
+					<label>Save As...</label>
+				</object>
+				<object class="wxMenuItem" name="ID_MENU_CLOSE" variable="MenuItem3" member="yes">
+					<label>Close</label>
+				</object>
+				<object class="separator" />
+				<object class="wxMenuItem" name="ID_MENU_EXPORT" variable="MenuItem4" member="yes">
+					<label>Export...</label>
+				</object>
+				<object class="separator" />
+				<object class="wxMenuItem" name="ID_MENU_EXIT" variable="MenuItem5" member="yes">
+					<label>Exit</label>
+				</object>
+			</object>
+			<object class="wxMenu" variable="Menu2" member="yes">
+				<label>View</label>
+				<object class="wxMenuItem" name="ID_MENU_TABLE_DATA" variable="MenuItem6" member="yes">
+					<label>Table Data</label>
+				</object>
+				<object class="wxMenuItem" name="ID_MENU_GRAPHIC_DATA" variable="MenuItem7" member="yes">
+					<label>Graphic Data</label>
+				</object>
+			</object>
+			<object class="wxMenu" variable="Menu3" member="yes">
+				<label>Processing</label>
+				<object class="wxMenuItem" name="ID_MENU_GENERATE_DATA" variable="MenuItem8" member="yes">
+					<label>Generate Data...</label>
+				</object>
+			</object>
+			<object class="wxMenu" variable="Menu4" member="yes">
+				<label>Help</label>
+				<object class="wxMenuItem" name="ID_MENU_ABOUT" variable="MenuItem9" member="yes">
+					<label>About...</label>
+				</object>
+			</object>
+		</object>
+		<object class="wxStatusBar" name="ID_STATUSBAR1" variable="StatusBar1" member="yes">
+			<fields>1</fields>
+			<widths>-1</widths>
+			<styles>wxSB_NORMAL</styles>
+		</object>
+	</object>
 </wxsmith>

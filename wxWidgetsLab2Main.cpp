@@ -68,6 +68,7 @@ BEGIN_EVENT_TABLE(wxWidgetsLab2Frame,wxFrame)
     EVT_MENU(ID_MENU_CLOSE, wxWidgetsLab2Frame::OnCloseData)
     EVT_MENU(ID_MENU_OPEN, wxWidgetsLab2Frame::OnOpenFile)
     EVT_MENU(ID_MENU_SAVE, wxWidgetsLab2Frame::OnSaveFile)
+    EVT_MENU(ID_MENU_EXPORT, wxWidgetsLab2Frame::OnExport)
     EVT_CLOSE(wxWidgetsLab2Frame::OnClose)
 END_EVENT_TABLE()
 
@@ -285,4 +286,28 @@ void wxWidgetsLab2Frame::OnSaveFile(wxCommandEvent& event)
 
 }
 
+void wxWidgetsLab2Frame::OnExport(wxCommandEvent& event)
+{
+        wxClientDC dc(this);
+        wxSize size = GetClientSize();
+        wxMemoryDC memDC;
+        wxBitmap bitmap(size.GetWidth(), size.GetHeight());
+        memDC.SelectObject(bitmap);
+        memDC.Blit(0, 0, size.GetWidth(), size.GetHeight(), &dc, 0, 0);
+        memDC.SelectObject(wxNullBitmap);
+        wxImage image = bitmap.ConvertToImage();
 
+        wxFileDialog saveFileDialog(this, _("Save .bmp file"), "", "",
+                       "BMP files (*.bmp)|*.bmp", wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
+        if (saveFileDialog.ShowModal() == wxID_CANCEL)
+            return;
+
+        if (image.SaveFile(saveFileDialog.GetPath(), wxBITMAP_TYPE_BMP))
+        {
+            wxMessageBox("Image exported as BMP successfully.", "Exported", wxOK | wxICON_INFORMATION);
+        }
+        else
+        {
+            wxMessageBox("Failed to export the image.", "Export Error", wxOK | wxICON_ERROR);
+        }
+}

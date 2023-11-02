@@ -7,7 +7,7 @@
 1698769793 /home/stud/labs/wxWidgetsLab2/wxWidgetsLab2App.h
 	<wx/app.h>
 
-1698951075 /home/stud/labs/wxWidgetsLab2/wxWidgetsLab2Main.h
+1698952548 /home/stud/labs/wxWidgetsLab2/wxWidgetsLab2Main.h
 	"wxPaintView.h"
 	"wxGridView.h"
 	<wx/frame.h>

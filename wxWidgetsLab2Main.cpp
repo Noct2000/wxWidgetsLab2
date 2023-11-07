@@ -226,7 +226,7 @@ void wxWidgetsLab2Frame::OnGenerateData(wxCommandEvent& event)
 
 void wxWidgetsLab2Frame::OnCloseData(wxCommandEvent& event)
 {
-    if (wxMessageBox("All unsaved data will be lost. Proceed?", "Please confirm",
+    if (!m_data->IsEmpty() && wxMessageBox("All unsaved data will be lost. Proceed?", "Please confirm",
                          wxICON_QUESTION | wxYES_NO, this) == wxNO ) {
         return;
     }
@@ -243,7 +243,7 @@ void wxWidgetsLab2Frame::OnCloseData(wxCommandEvent& event)
 
 void wxWidgetsLab2Frame::OnOpenFile(wxCommandEvent& event)
 {
-    if (wxMessageBox("All unsaved data will be lost. Proceed?", "Please confirm",
+    if (!m_data->IsEmpty() && wxMessageBox("All unsaved data will be lost. Proceed?", "Please confirm",
                          wxICON_QUESTION | wxYES_NO, this) == wxNO ) {
         return;
     }
